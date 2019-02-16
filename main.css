@@ -1,0 +1,35 @@
+body {
+  background-color: #fafafa;
+  padding: 0 1em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.grid-item {
+  background-color: #bdbdbd;
+  border: 1px solid #212121;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+  height: 3em;
+}
+
+.btn-box {
+  align-content: center;
+  margin: .4em;
+}
+
+.btn {
+  background-color: #616161;
+  color: #fafafa;
+  padding: .5em 2em;
+  border-color: #212121;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #212121;
+}
