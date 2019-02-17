@@ -1,6 +1,8 @@
 const grid = document.getElementsByClassName(`grid-item`)
-const monster = "<img  src='image/wumpus.svg' style='height: 100%;width: 100%'>"
-const door = "<img  src='image/door.svg' style='height: 100%;width: 100%'>"
+const monster = "<img src='image/wumpus.svg' style='height: 100%;width: 100%'>"
+const door = "<img src='image/door.svg' style='height: 100%;width: 100%'>"
+const breeze = 0;
+const stink = 0;
 
 setInitialCanvas = () => {
   setDoor()
