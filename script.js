@@ -26,8 +26,10 @@ setHole = () => {
   const n = Math.floor(Math.random() * 16)
   if (grid[n].innerHTML == '🚪' || grid[n].innerHTML == 'B')
     setHole()
-  else
+  else{
     grid[n].innerHTML = 'B'
+    setBreeze(n)
+  }
 }
 
 setMoster = () => {
