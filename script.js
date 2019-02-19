@@ -1,8 +1,12 @@
 const grid = document.getElementsByClassName(`grid-item`)
-const monster = "<img src='image/wumpus.svg' style='height: 100%;width: 100%'>"
-const door = "<img src='image/door.svg' style='height: 100%;width: 100%'>"
-const breeze = 0;
-const stink = 0;
+const monster = 'M'//"<img src='image/wumpus.svg' style='height: 100%;width: 100%'>"
+const mosnterLocale = null
+const door = 'D'//"<img src='image/door.svg' style='height: 100%;width: 100%'>"
+const hole = '🕳'
+const breeze = 0
+const stink = 0
+const heroLocale = null
+const hero = {up: '↑', down: '↓', right: '→', left: '←'}
 
 setInitialCanvas = () => {
   setDoor()
@@ -10,6 +14,7 @@ setInitialCanvas = () => {
   setHole()
   setHole()
   setMoster()
+  setTreasure()
 }
 
 clearCanvas = () => {
@@ -22,13 +27,14 @@ setDoor = () => {
     n = Math.floor(Math.random() * 16)
   }
   grid[n].innerHTML = door
+  setHero(n)
 }
 
 setTreasure = () => {}
 
 setHole = () => {
   const n = Math.floor(Math.random() * 16)
-  if (grid[n].innerHTML == door || grid[n].innerHTML == '🕳')
+  if (grid[n].innerHTML.includes(door) || grid[n].innerHTML == hole)
     setHole()
   else{
     grid[n].innerHTML = '🕳'
@@ -41,9 +47,15 @@ setMoster = () => {
   if (grid[n].innerHTML == door)
     setMoster()
   else{
-    grid[n].innerHTML = monster;
+    grid[n].innerHTML = grid[n].innerHTML + monster
+    mosnterLocale = n
     setStink(n)
   }
+}
+
+setHero = n => {
+  grid[n].innerHTML = grid[n].innerHTML + hero.left
+  //heroLocale = n
 }
 
 setStink = n => {

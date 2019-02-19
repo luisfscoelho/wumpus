@@ -1,6 +1,7 @@
 body {
   background-color: #fafafa;
   padding: 0 1em;
+  text-align: center;
 }
 
 .grid {
@@ -11,15 +12,16 @@ body {
 .grid-item {
   background-color: #bdbdbd;
   border: 1px solid #212121;
-  padding: 10px;
+  padding: 4px;
   font-size: 30px;
-  text-align: center;
   height: 3em;
 }
 
 .btn-box {
-  align-content: center;
-  margin: .4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1em .5em .5em .5em;
 }
 
 .btn {
