@@ -1,5 +1,6 @@
 body {
-  background-color: #fafafa;
+  background-color: #222;
+  color: #fff;
   padding: 0 1em;
   text-align: center;
 }
@@ -7,20 +8,25 @@ body {
 .grid {
   display: grid;
   grid-template-columns: auto auto auto auto;
+  grid-auto-rows: auto auto auto auto;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+  justify-content: center;
 }
 
 .grid-item {
-  background-color: #bdbdbd;
-  border: 1px solid #212121;
-  padding: 4px;
   font-size: 30px;
-  height: 3em;
+  height: 3.5em;
+  width: 3.5em;
+  background-image: url('./image/floor.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .btn-box {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 1em .5em .5em .5em;
 }
 
@@ -30,8 +36,15 @@ body {
   padding: .5em 2em;
   border-color: #212121;
   border-radius: 4px;
+  font-weight: bolder;
 }
 
 .btn:hover {
-  background-color: #212121;
+  background-color: #111;
+}
+
+.hole {
+  background-image: url('./image/hole.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
