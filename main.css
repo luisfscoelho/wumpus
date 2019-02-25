@@ -18,9 +18,7 @@ body {
   font-size: 30px;
   height: 3.5em;
   width: 3.5em;
-  background-image: url('./image/floor.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #422835;
 }
 
 .btn-box {
@@ -47,4 +45,11 @@ body {
   background-image: url('./image/hole.png');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.door {
+  background-image: url('./image/door.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #422835;
 }

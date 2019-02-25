@@ -1,11 +1,16 @@
 const grid = document.getElementsByClassName(`grid-item`)
 const monster = `<img src="image/moster.png" style="height:70%; width:70%">`
 const monsterLocale = null
-const door = `<img src="image/door.svg" style="height: 80%;width: 80%">`
 const breeze = 0
 const stink = 0
-const heroLocale = null
-const hero = {up: '↑', down: '↓', right: '→', left: '←'}
+const hero = {
+  up:    `<img src="image/hero.png" style="height:70%; width:70%">`,
+  down:  `<img src="image/hero.png" style="height:70%; width:70%">`,
+  right: `<img src="image/hero.png" style="height:70%; width:70%">`,
+  left:  `<img src="image/hero.png" style="height:70%; width:70%">`,
+  locale: undefined,
+  direction: undefined,
+}
 
 setInitialCanvas = () => {
   setDoor()
@@ -18,15 +23,15 @@ setInitialCanvas = () => {
 
 const clearCanvas = () => {
   Array.prototype.map.call(grid, item => item.innerHTML = ``)
-  Array.prototype.map.call(grid, item => item.classList.remove('hole'))
+  Array.prototype.map.call(grid, item => item.classList.remove('hole', 'door'))
 }
 
 const setDoor = () => {
   let n = 6
-  while(n==5 || n==6 || n==9 || n==10) {
+  while ([5, 6, 9, 10].includes(n)) {
     n = Math.floor(Math.random() * 16)
   }
-  grid[n].innerHTML = door
+  grid[n].classList.add('door')
   setHero(n)
 }
 
@@ -34,7 +39,7 @@ const setTreasure = () => {}
 
 const setHole = () => {
   const n = Math.floor(Math.random() * 16)
-  if (grid[n].innerHTML.includes(door) || grid[n].classList.contains('hole'))
+  if (grid[n].classList.contains('door') || grid[n].classList.contains('hole'))
     setHole()
   else{
     grid[n].classList.add('hole')
@@ -44,9 +49,9 @@ const setHole = () => {
 
 const setmonster = () => {
   const n = Math.floor(Math.random() * 16)
-  if (grid[n].innerHTML.includes(door))
+  if (grid[n].classList.contains('door'))
     setmonster()
-  else{
+  else {
     grid[n].innerHTML = grid[n].innerHTML + monster
     monsterLocale = n
     setStink(n)
@@ -55,7 +60,7 @@ const setmonster = () => {
 
 const setHero = n => {
   grid[n].innerHTML = grid[n].innerHTML + hero.left
-  //heroLocale = n
+  hero.locale = n
 }
 
 const setStink = n => {
