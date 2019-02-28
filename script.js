@@ -1,5 +1,5 @@
 const grid = document.getElementsByClassName(`grid-item`)
-const breeze = 0
+const breeze = `<img src="image/breeze.png" style="height:30px; width:30px">`
 const stink = `<img src="image/stink.png" style="height:50%; width:50%">`
 const monster = {
   monster: `<img src="image/monster.png" style="height:70%; width:70%">`,
