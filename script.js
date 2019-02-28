@@ -13,18 +13,19 @@ const hero = {
 }
 
 setInitialCanvas = () => {
+  setTreasure()
   setDoor()
   setHole()
   setHole()
   setHole()
   setmonster()
-  setTreasure()
+  
   
 }
 
 const clearCanvas = () => {
   Array.prototype.map.call(grid, item => item.innerHTML = ``)
-  Array.prototype.map.call(grid, item => item.classList.remove('hole', 'door'))
+  Array.prototype.map.call(grid, item => item.classList.remove('hole', 'door', 'treasure'))
 }
 
 const setDoor = () => {

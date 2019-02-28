@@ -1,0 +1,19 @@
+{
+  "name": "wumpus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisfs123/wumpus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luisfs123/wumpus/issues"
+  },
+  "homepage": "https://github.com/luisfs123/wumpus#readme"
+}
