@@ -37,6 +37,10 @@ body {
   font-weight: bolder;
 }
 
+.font{
+    color: red;  
+}
+
 .btn:hover {
   background-color: #111;
 }
