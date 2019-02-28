@@ -35,7 +35,13 @@ const setDoor = () => {
   setHero(n)
 }
 
-const setTreasure = () => {}
+const setTreasure = () => {
+  const n = Math.floor(Math.random() * 16)
+  if (grid[n].classList.contains('door') || grid[n].classList.contains('hole') || n == monsterLocale) {
+    setTreasure()
+  }
+  grid[n].classList.add('treasure')
+}
 
 const setHole = () => {
   const n = Math.floor(Math.random() * 16)
@@ -53,7 +59,7 @@ const setmonster = () => {
     setmonster()
   else {
     grid[n].innerHTML = grid[n].innerHTML + monster
-    monsterLocale = n
+    //monsterLocale = n
     setStink(n)
   }
 }

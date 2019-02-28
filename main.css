@@ -53,3 +53,10 @@ body {
   background-size: cover;
   background-color: #422835;
 }
+
+.treasure {
+  background-image: url('./image/treasure.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #422835;
+}
