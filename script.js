@@ -1,24 +1,24 @@
 const grid = document.getElementsByClassName(`grid-item`)
-const monster = `<img src="image/moster.png" style="height:70%; width:70%">`
+const monster = `<img src="image/monster.png" style="height:70%; width:70%">`
 const monsterLocale = null
 const breeze = 0
-const stink = 0
+const stink = `<img src="image/stink.png" style="height:50%; width:50%">`
 const hero = {
-  up:    `<img src="image/hero.png" style="height:70%; width:70%">`,
-  down:  `<img src="image/hero.png" style="height:70%; width:70%">`,
-  right: `<img src="image/hero.png" style="height:70%; width:70%">`,
-  left:  `<img src="image/hero.png" style="height:70%; width:70%">`,
+  up:    `<img src="image/kngup.png" style="height:80%; width:80%">`,
+  down:  `<img src="image/kngdown.png" style="height:80%; width:80%">`,
+  right: `<img src="image/kngright.png" style="height:80%; width:80%">`,
+  left:  `<img src="image/kngleft.png" style="height:80%; width:80%">`,
   locale: undefined,
   direction: undefined,
 }
 
 setInitialCanvas = () => {
   setDoor()
-  setHole()
-  setHole()
-  setHole()
+  setHole(); setHole(); setHole()
   setmonster()
+  setStink(); setStink(); setStink();
   setTreasure()
+  
 }
 
 const clearCanvas = () => {
@@ -59,12 +59,12 @@ const setmonster = () => {
 }
 
 const setHero = n => {
-  grid[n].innerHTML = grid[n].innerHTML + hero.left
+  grid[n].innerHTML = grid[n].innerHTML + hero.down
   hero.locale = n
 }
 
 const setStink = n => {
-
+  
 }
 
 const setBreeze = n => {
