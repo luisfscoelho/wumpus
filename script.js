@@ -14,9 +14,10 @@ const hero = {
 
 setInitialCanvas = () => {
   setDoor()
-  setHole(); setHole(); setHole()
+  setHole()
+  setHole()
+  setHole()
   setmonster()
-  setStink(); setStink(); setStink();
   setTreasure()
   
 }
