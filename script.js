@@ -73,9 +73,14 @@ const setStink = n => {
   
 }
 
-const setBreeze = n => {
-  
-}
+const setBreeze = n => {}
+
+
+const moveRight = () => {}
+const movetUp = () => {}
+const moveLeft = () => {}
+const moveDown = () => {}
+
 
 // Buttons
 const btnGo = document.getElementById(`btnGo`)
