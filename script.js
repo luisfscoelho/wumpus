@@ -13,14 +13,12 @@ const hero = {
 }
 
 setInitialCanvas = () => {
-  setTreasure()
   setDoor()
   setHole()
   setHole()
   setHole()
+  setTreasure()
   setmonster()
-  
-  
 }
 
 const clearCanvas = () => {
@@ -39,7 +37,7 @@ const setDoor = () => {
 
 const setTreasure = () => {
   const n = Math.floor(Math.random() * 16)
-  if (grid[n].classList.contains('door') || grid[n].classList.contains('hole') || n == monsterLocale) {
+  if (grid[n].classList.contains('door') || grid[n].classList.contains('hole')) {
     setTreasure()
   }
   grid[n].classList.add('treasure')
