@@ -1,8 +1,10 @@
 const grid = document.getElementsByClassName(`grid-item`)
-const monster = `<img src="image/monster.png" style="height:70%; width:70%">`
-const monsterLocale = null
 const breeze = 0
 const stink = `<img src="image/stink.png" style="height:50%; width:50%">`
+const monster = {
+  monster: `<img src="image/monster.png" style="height:70%; width:70%">`,
+  locale: undefined,
+}
 const hero = {
   up:    `<img src="image/kngup.png" style="height:80%; width:80%">`,
   down:  `<img src="image/kngdown.png" style="height:80%; width:80%">`,
@@ -58,8 +60,8 @@ const setmonster = () => {
   if (grid[n].classList.contains('door'))
     setmonster()
   else {
-    grid[n].innerHTML = grid[n].innerHTML + monster
-    //monsterLocale = n
+    grid[n].innerHTML = grid[n].innerHTML + monster.monster
+    //monster.locale = n
     setStink(n)
   }
 }
