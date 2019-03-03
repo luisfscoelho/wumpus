@@ -28,20 +28,21 @@ const clearCanvas = () => {
 }
 
 const setDoor = () => {
-  let n = 6
-  while ([5, 6, 9, 10].includes(n)) {
-    n = Math.floor(Math.random() * 16)
+  let n = Math.floor(Math.random() * 16)
+  if ([5, 6, 9, 10].includes(n))
+    setDoor()
+  else{
+    grid[n].classList.add('door')
+    setHero(n)
   }
-  grid[n].classList.add('door')
-  setHero(n)
 }
 
 const setTreasure = () => {
   const n = Math.floor(Math.random() * 16)
-  if (grid[n].classList.contains('door') || grid[n].classList.contains('hole')) {
+  if (grid[n].classList.contains('door') || grid[n].classList.contains('hole'))
     setTreasure()
-  }
-  grid[n].classList.add('treasure')
+  else
+    grid[n].classList.add('treasure')
 }
 
 const setHole = () => {
