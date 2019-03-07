@@ -28,7 +28,7 @@ const clearCanvas = () => {
 }
 
 const setDoor = () => {
-  let n = Math.floor(Math.random() * 16)
+  const n = Math.floor(Math.random() * 16)
   if ([5, 6, 9, 10].includes(n))
     setDoor()
   else{
@@ -78,12 +78,10 @@ const setStink = n => {
 
 const setBreeze = n => {}
 
-
 const moveRight = () => {}
 const movetUp = () => {}
 const moveLeft = () => {}
 const moveDown = () => {}
-
 
 // Buttons
 const btnGo = document.getElementById(`btnGo`)
