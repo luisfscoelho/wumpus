@@ -56,11 +56,11 @@ const setHole = () => {
 }
 
 const setmonster = () => {
-  const n = Math.floor(Math.random() * 16)
+  const n = Math.floor(Math.random() * 16) 
   if (grid[n].classList.contains('door'))
     setmonster()
   else {
-    grid[n].innerHTML = grid[n].innerHTML + monster.monster
+    moveMonster(n)
     //monster.locale = n
     setStink(n)
   }
@@ -77,6 +77,14 @@ const setStink = n => {
 }
 
 const setBreeze = n => {}
+
+
+const moveMonster = n =>{
+  alert(n)
+    grid[n].innerHTML = grid[n].innerHTML + monster.monster
+    setTimeout(function(){grid[n].innerHTML = ` `}, 1000)
+}
+
 
 const moveRight = () => {}
 const movetUp = () => {}
