@@ -57,11 +57,11 @@ const setHole = () => {
 }
 
 const setmonster = () => {
-  const n = Math.floor(Math.random() * 16)
+  const n = Math.floor(Math.random() * 16) 
   if (grid[n].classList.contains('door'))
     setmonster()
   else {
-    grid[n].innerHTML = grid[n].innerHTML + monster.monster
+    moveMonster(n)
     //monster.locale = n
     setStink(n)
   }
@@ -85,10 +85,44 @@ const setStink = n => {
 
 const setBreeze = n => {}
 
-const moveRight = () => {}
-const movetUp = () => {}
-const moveLeft = () => {}
-const moveDown = () => {}
+
+const moveMonster = n =>{
+    grid[n].innerHTML = grid[n].innerHTML + monster.monster
+    setTimeout(function(){grid[n].innerHTML = ` `}, 1000)
+      n=n+1
+    moveMonster(n)
+
+}
+  
+  /*
+  ([12,13,14,15]).includes(n)
+    //n+1, n+4(tratar 13,14,15), n-1,n-4
+  ([0,4,8,12]).includes(n)
+    //n+1,n-1(tratar 0),n-4
+  ([0,1,2,3]).includes(n)
+    //n+1,n-1(tratar 0),n+4 
+  ([3,7,11,15]).includes(n)
+    //n-1, n+4(tratar 15),n-4
+  else 
+    //n+1, n-1, n+4, n-4
+  */
+
+
+const moveRight = () => {
+  grid[n].innerHTML = grid[n].innerHTML + hero.right
+}
+const movetUp = () => {
+  grid[n].innerHTML = grid[n].innerHTML + hero.up
+}
+const moveLeft = () => {
+  grid[n].innerHTML = grid[n].innerHTML + hero.left
+}
+const moveDown = () => {
+  grid[n].innerHTML = grid[n].innerHTML + hero.down
+}
+
+
+
 
 // Buttons
 const btnGo = document.getElementById(`btnGo`)
