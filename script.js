@@ -3,6 +3,7 @@ const breeze = `<img src="image/breeze.png" style="height:30px; width:30px">`
 const stink = `<img src="image/stink.png" style="height:50%; width:50%">`
 const monster = {
   monster: `<img src="image/monster.png" style="height:70%; width:70%">`,
+  stink: `<img src="image/stink.png" class="stink" style="height:70%; width:70%">`,
   locale: undefined,
 }
 const hero = {
@@ -73,7 +74,13 @@ const setHero = n => {
 }
 
 const setStink = n => {
-  
+  if ( ![3, 7, 11, 15].includes(n) )
+    grid[n+1].innerHTML = grid[n+1].innerHTML + monster.stink
+  if ( ![0, 4, 8, 12].includes(n) )
+    grid[n-1].innerHTML = grid[n-1].innerHTML + monster.stink
+
+  grid[n+4].innerHTML = grid[n+4].innerHTML + monster.stink
+  grid[n-4].innerHTML = grid[n-4].innerHTML + monster.stink
 }
 
 const setBreeze = n => {}
