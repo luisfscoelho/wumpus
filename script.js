@@ -2,15 +2,15 @@ const grid = document.getElementsByClassName(`grid-item`)
 const breeze = `<img src="image/breeze.png" style="height:30px; width:30px">`
 const stink = `<img src="image/stink.png" style="height:50%; width:50%">`
 const monster = {
-  monster: `<img src="image/monster.png" style="height:70%; width:70%">`,
-  stink: `<img src="image/stink.png" style="height:70%; width:70%">`,
+  monster: `<img src="image/monster.png" style="height:70%; width:70%" id="monster">`,
+  stink: `<img src="image/stink.png" style="height:70%; width:70%" id="stink">`,
   locale: undefined,
 }
 const hero = {
-  up:    `<img src="image/kngup.png" style="height:80%; width:80%">`,
-  down:  `<img src="image/kngdown.png" style="height:80%; width:80%">`,
-  right: `<img src="image/kngright.png" style="height:80%; width:80%">`,
-  left:  `<img src="image/kngleft.png" style="height:80%; width:80%">`,
+  up:    `<img src="image/kngup.png" style="height:80%; width:80%" id="hero">`,
+  down:  `<img src="image/kngdown.png" style="height:80%; width:80%" id="hero">`,
+  right: `<img src="image/kngright.png" style="height:80%; width:80%" id="hero">`,
+  left:  `<img src="image/kngleft.png" style="height:80%; width:80%" id="hero">`,
   locale: undefined,
   direction: undefined,
 }
@@ -21,11 +21,42 @@ setInitialCanvas = () => {
   setHole()
   setHole()
   setmonster()
+  gameLoop()
+}
+
+const gameLoop = () => {
+  for(;;) {
+    setTimeout(
+      () => { },
+      2000
+    )
+
+    removeMonster(monster.locale)
+    setmonster(monsterTo(monster.locale))
+
+    if(monster.locale == 0)
+      break
+  }
 }
 
 const clearCanvas = () => {
   Array.prototype.map.call(grid, item => item.innerHTML = ``)
   Array.prototype.map.call(grid, item => item.classList.remove('hole', 'door', 'treasure'))
+}
+
+const monsterTo = n => {
+  const items = []
+
+  if ( ![3, 7, 11, 15].includes(n) )
+    items.push(n+1)
+  if ( ![0, 4, 8, 12].includes(n) )
+    items.push(n-1)
+  if ( ![0, 1, 2, 3].includes(n) )
+    items.push(n+4)
+  if ( ![12, 13, 14, 15].includes(n) )
+    items.push(n-4)
+
+  return items[Math.floor(Math.random()*items.length)]
 }
 
 const setDoor = () => {
@@ -48,10 +79,12 @@ const setTreasure = () => {
 
 const setHole = () => {
   const n = Math.floor(Math.random() * 16)
-  if (grid[n].classList.contains('door') || grid[n].classList.contains('hole') || grid[n].classList.contains('treasure'))
+  const classList = grid[n].classList
+
+  if (classList.contains('door') || classList.contains('hole') || classList.contains('treasure'))
     setHole()
   else{
-    grid[n].classList.add('hole')
+    classList.add('hole')
     setBreeze(n)
   }
 }
@@ -62,10 +95,14 @@ const setmonster = () => {
     setmonster()
   else {
     grid[n].innerHTML = grid[n].innerHTML + monster.monster
-    setTimeout(function(){grid[n].innerHTML = ` `}, 1000)        
     monster.locale = n
     setStink(n)
   }
+}
+
+const removeMonster = n => {
+  grid[n].remove(monster)
+  removeStink(n)
 }
 
 const setHero = n => {
@@ -76,56 +113,21 @@ const setHero = n => {
 
 const setStink = n => {
   if ( ![3, 7, 11, 15].includes(n) )
-    {
-      grid[n+1].innerHTML = grid[n+1].innerHTML + monster.stink 
-      setTimeout(function(){grid[n+1].innerHTML = ` `}, 1000)        
-    }
+    grid[n+1].innerHTML = grid[n+1].innerHTML + monster.stink 
   if ( ![0, 4, 8, 12].includes(n) )
-  {
     grid[n-1].innerHTML = grid[n-1].innerHTML + monster.stink
-    setTimeout(function(){grid[n-1].innerHTML = ` `}, 1000)        
-    
-  }
-    
   if ( ![0, 1, 2, 3].includes(n) )
-  {
     grid[n-4].innerHTML = grid[n-4].innerHTML + monster.stink
-    setTimeout(function(){grid[n-4].innerHTML = ` `}, 1000)        
-  }
-    
   if ( ![12, 13, 14, 15].includes(n) )
-  {
     grid[n+4].innerHTML = grid[n+4].innerHTML + monster.stink
-    setTimeout(function(){grid[n+4].innerHTML = ` `}, 1000)        
-  }
- 
-  
 }
 
-const moveMonster = n =>{
-  if ( ![3, 7, 11, 15].includes(n) )
-    {
-      grid[n+1].innerHTML = grid[n+1].innerHTML + monster.monster
-      setTimeout(function(){grid[n].innerHTML = ` `}, 1000)  
-    }
-  if ( ![0, 4, 8, 12].includes(n) )
-    {
-      grid[n+1].innerHTML = grid[n-1].innerHTML + monster.monster
-      setTimeout(function(){grid[n-1].innerHTML = ` `}, 1000)  
-    }
-  if ( ![0, 1, 2, 3].includes(n) )
-    {
-      grid[n-4].innerHTML = grid[n-4].innerHTML + monster.monster
-      setTimeout(function(){grid[n-4].innerHTML = ` `}, 1000)  
-    }
-  if ( ![12, 13, 14, 15].includes(n) )
-    {
-      grid[n+4].innerHTML = grid[n+4].innerHTML + monster.monster
-      setTimeout(function(){grid[n+4].innerHTML = ` `}, 1000)  
-    }
-
+const removeStink = n => {
+  grid[n+1].remove(stink)
+  grid[n-1].remove(stink)
+  grid[n+4].remove(stink)
+  grid[n-4].remove(stink)
 }
-
 
 const setBreeze = n => {
   // if ( ![3, 7, 11, 15].includes('hole') )
@@ -136,10 +138,7 @@ const setBreeze = n => {
   //   grid[n-4].innerHTML = grid[n-4].innerHTML + breeze
   // if ( ![12, 13, 14, 15].includes('hole') )
   //   grid[n+4].innerHTML = grid[n+4].innerHTML + breeze
-
 }
-
-
 
 // Buttons
 const btnGo = document.getElementById(`btnGo`)
