@@ -62,6 +62,7 @@ const setmonster = () => {
     setmonster()
   else {
     grid[n].innerHTML = grid[n].innerHTML + monster.monster
+    setTimeout(function(){grid[n].innerHTML = ` `}, 1000)        
     monster.locale = n
     setStink(n)
   }
@@ -75,16 +76,70 @@ const setHero = n => {
 
 const setStink = n => {
   if ( ![3, 7, 11, 15].includes(n) )
-    grid[n+1].innerHTML = grid[n+1].innerHTML + monster.stink
+    {
+      grid[n+1].innerHTML = grid[n+1].innerHTML + monster.stink 
+      setTimeout(function(){grid[n+1].innerHTML = ` `}, 1000)        
+    }
   if ( ![0, 4, 8, 12].includes(n) )
+  {
     grid[n-1].innerHTML = grid[n-1].innerHTML + monster.stink
+    setTimeout(function(){grid[n-1].innerHTML = ` `}, 1000)        
+    
+  }
+    
   if ( ![0, 1, 2, 3].includes(n) )
+  {
     grid[n-4].innerHTML = grid[n-4].innerHTML + monster.stink
+    setTimeout(function(){grid[n-4].innerHTML = ` `}, 1000)        
+  }
+    
   if ( ![12, 13, 14, 15].includes(n) )
+  {
     grid[n+4].innerHTML = grid[n+4].innerHTML + monster.stink
+    setTimeout(function(){grid[n+4].innerHTML = ` `}, 1000)        
+  }
+ 
+  
 }
 
-const setBreeze = n => {}
+const moveMonster = n =>{
+  if ( ![3, 7, 11, 15].includes(n) )
+    {
+      grid[n+1].innerHTML = grid[n+1].innerHTML + monster.monster
+      setTimeout(function(){grid[n].innerHTML = ` `}, 1000)  
+    }
+  if ( ![0, 4, 8, 12].includes(n) )
+    {
+      grid[n+1].innerHTML = grid[n-1].innerHTML + monster.monster
+      setTimeout(function(){grid[n-1].innerHTML = ` `}, 1000)  
+    }
+  if ( ![0, 1, 2, 3].includes(n) )
+    {
+      grid[n-4].innerHTML = grid[n-4].innerHTML + monster.monster
+      setTimeout(function(){grid[n-4].innerHTML = ` `}, 1000)  
+    }
+  if ( ![12, 13, 14, 15].includes(n) )
+    {
+      grid[n+4].innerHTML = grid[n+4].innerHTML + monster.monster
+      setTimeout(function(){grid[n+4].innerHTML = ` `}, 1000)  
+    }
+
+}
+
+
+const setBreeze = n => {
+  // if ( ![3, 7, 11, 15].includes('hole') )
+  //   grid[n+1].innerHTML = grid[n+1].innerHTML + breeze
+  // if ( ![0, 4, 8, 12].includes('hole') )
+  //   grid[n-1].innerHTML = grid[n-1].innerHTML + breeze
+  // if ( ![0, 1, 2, 3].includes('hole') )
+  //   grid[n-4].innerHTML = grid[n-4].innerHTML + breeze
+  // if ( ![12, 13, 14, 15].includes('hole') )
+  //   grid[n+4].innerHTML = grid[n+4].innerHTML + breeze
+
+}
+
+
 
 // Buttons
 const btnGo = document.getElementById(`btnGo`)
