@@ -3,7 +3,7 @@ const breeze = `<img src="image/breeze.png" style="height:30px; width:30px">`
 const stink = `<img src="image/stink.png" style="height:50%; width:50%">`
 const monster = {
   monster: `<img src="image/monster.png" style="height:70%; width:70%">`,
-  stink: `<img src="image/stink.png" class="stink" style="height:70%; width:70%">`,
+  stink: `<img src="image/stink.png" style="height:70%; width:70%">`,
   locale: undefined,
 }
 const hero = {
@@ -57,12 +57,12 @@ const setHole = () => {
 }
 
 const setmonster = () => {
-  const n = Math.floor(Math.random() * 16) 
+  const n = Math.floor(Math.random() * 16)
   if (grid[n].classList.contains('door'))
     setmonster()
   else {
-    moveMonster(n)
-    //monster.locale = n
+    grid[n].innerHTML = grid[n].innerHTML + monster.monster
+    monster.locale = n
     setStink(n)
   }
 }
@@ -78,58 +78,17 @@ const setStink = n => {
     grid[n+1].innerHTML = grid[n+1].innerHTML + monster.stink
   if ( ![0, 4, 8, 12].includes(n) )
     grid[n-1].innerHTML = grid[n-1].innerHTML + monster.stink
-
-  grid[n+4].innerHTML = grid[n+4].innerHTML + monster.stink
-  grid[n-4].innerHTML = grid[n-4].innerHTML + monster.stink
+  if ( ![0, 1, 2, 3].includes(n) )
+    grid[n-4].innerHTML = grid[n-4].innerHTML + monster.stink
+  if ( ![12, 13, 14, 15].includes(n) )
+    grid[n+4].innerHTML = grid[n+4].innerHTML + monster.stink
 }
 
 const setBreeze = n => {}
 
-
-const moveMonster = n =>{
-    grid[n].innerHTML = grid[n].innerHTML + monster.monster
-    setTimeout(function(){grid[n].innerHTML = ` `}, 1000)
-      n=n+1
-    moveMonster(n)
-
-}
-  
-  /*
-  ([12,13,14,15]).includes(n)
-    //n+1, n+4(tratar 13,14,15), n-1,n-4
-  ([0,4,8,12]).includes(n)
-    //n+1,n-1(tratar 0),n-4
-  ([0,1,2,3]).includes(n)
-    //n+1,n-1(tratar 0),n+4 
-  ([3,7,11,15]).includes(n)
-    //n-1, n+4(tratar 15),n-4
-  else 
-    //n+1, n-1, n+4, n-4
-  */
-
-
-const moveRight = () => {
-  grid[n].innerHTML = grid[n].innerHTML + hero.right
-}
-const movetUp = () => {
-  grid[n].innerHTML = grid[n].innerHTML + hero.up
-}
-const moveLeft = () => {
-  grid[n].innerHTML = grid[n].innerHTML + hero.left
-}
-const moveDown = () => {
-  grid[n].innerHTML = grid[n].innerHTML + hero.down
-}
-
-
-
-
 // Buttons
 const btnGo = document.getElementById(`btnGo`)
 btnGo.addEventListener(`click`, () => {clearCanvas(); setInitialCanvas()})
-
-const btnNext = document.getElementById(`btnNext`)
-btnNext.addEventListener(`click`, () => alert(`next`))
 
 const btnRestart = document.getElementById(`btnRestart`)
 btnRestart.addEventListener(`click`, () => clearCanvas())
