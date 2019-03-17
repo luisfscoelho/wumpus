@@ -13,6 +13,22 @@ const hero = {
   left:  `<img src="image/kngleft.png" style="height:80%; width:80%" id="hero">`,
   locale: undefined,
   direction: undefined,
+  state: {
+    canvas: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],],
+    found: false,
+    won: false,
+    score: 0,
+  },
+  goLeft: () =>{},
+  goRight: () => {},
+  forward: () => {},
+  catchTreasure: () => {
+    hero.state.found = true
+  },
+  atack: () => {},
+  perception: (n, locale) => {
+    //brisa, fedor, buraco, parede, grito,
+  }
 }
 
 setInitialCanvas = () => {
@@ -24,19 +40,24 @@ setInitialCanvas = () => {
   gameLoop()
 }
 
-const gameLoop = () => {
-  for(;;) {
-    setTimeout(
-      () => { },
-      2000
-    )
+const gameLoop = () => setInterval(
+  () => {
+    if (hero.won)
+      clearInterval(gameLoop)
 
-    removeMonster(monster.locale)
-    setmonster(monsterTo(monster.locale))
+    hero.perception()
+    action()
+  },
+  2000
+)
 
-    if(monster.locale == 0)
-      break
-  }
+const action = () => {
+  console.log('asd')
+
+  if(hero.state[hero.locale].contains('treasure') && !hero.state.found)
+    hero.catchTreasure()
+  else
+    hero.forward()
 }
 
 const clearCanvas = () => {
@@ -101,8 +122,9 @@ const setmonster = () => {
 }
 
 const removeMonster = n => {
-  grid[n].remove(monster)
-  removeStink(n)
+  const theMonster = document.getElementById('monster')
+  grid[n].removeChild(theMonster)
+  //removeStink(n)
 }
 
 const setHero = n => {
@@ -123,10 +145,11 @@ const setStink = n => {
 }
 
 const removeStink = n => {
-  grid[n+1].remove(stink)
-  grid[n-1].remove(stink)
-  grid[n+4].remove(stink)
-  grid[n-4].remove(stink)
+  const theStink = document.getElementById('stink')
+  grid[n-1].removeChild(theStink)
+  grid[n+1].removeChild(theStink)
+  grid[n+4].removeChild(theStink)
+  grid[n-4].removeChild(theStink)
 }
 
 const setBreeze = n => {

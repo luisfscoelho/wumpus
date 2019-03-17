@@ -10,10 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/luisfs123/wumpus.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Luis Coelho",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/luisfs123/wumpus/issues"
   },
-  "homepage": "https://github.com/luisfs123/wumpus#readme"
+  "homepage": "https://github.com/luisfs123/wumpus#readme",
+  "devDependencies": {
+    "eslint": "^5.15.1"
+  }
 }
