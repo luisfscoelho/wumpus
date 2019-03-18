@@ -19,15 +19,66 @@ const hero = {
     won: false,
     score: 0,
   },
-  goLeft: () =>{},
-  goRight: () => {},
-  forward: () => {},
+  goLeft: () => {
+    const theHero = document.getElementById('hero')
+    grid[hero.locale].removeChild(theHero)
+    if (hero.direction == 'right'){
+      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.up
+      hero.direction = 'up'
+    }
+    if (hero.direction == 'up'){
+      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.left
+      hero.direction = 'left'
+    }
+    if (hero.direction == 'down'){
+      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.right
+      hero.direction = 'right'
+    }
+    if (hero.direction == 'left'){
+      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.down
+      hero.direction = 'down'
+    }
+  },
+  goRight: () => {
+    const theHero = document.getElementById('hero')
+    grid[hero.locale].removeChild(theHero)
+    if (hero.direction == 'right'){
+      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.down
+      hero.direction = 'down'
+    }
+    if (hero.direction == 'up'){
+      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.right
+      hero.direction = 'right'
+    }
+    if (hero.direction == 'down'){
+      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.left
+      hero.direction = 'left'
+    }
+    if (hero.direction == 'left'){
+      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.up
+      hero.direction = 'up'
+    }
+  },
+  forward: () => {
+
+  },
   catchTreasure: () => {
     hero.state.found = true
   },
   atack: () => {},
   perception: (n, locale) => {
     //brisa, fedor, buraco, parede, grito,
+    if(locale.classList.contains('treasure'))
+      hero.state.canvas[n].push('treasure')
+    else if(locale.classList.contains('breeze'))
+      hero.state.canvas[n].push('breeze')
+    else if(locale.classList.contains('door'))
+      hero.state.canvas[n].push('door')
+    else if(locale.contains('asd'))
+      hero.state.canvas[n].push('')
+    else if(locale.contains('daa'))
+      hero.state.canvas[n].push('')
+
   }
 }
 
@@ -45,7 +96,7 @@ const gameLoop = () => setInterval(
     if (hero.won)
       clearInterval(gameLoop)
 
-    hero.perception()
+    hero.perception(hero.locale, grid[hero.locale])
     action()
   },
   2000
@@ -54,10 +105,10 @@ const gameLoop = () => setInterval(
 const action = () => {
   console.log('asd')
 
-  if(hero.state[hero.locale].contains('treasure') && !hero.state.found)
+  if(`hero.state[hero.locale].contains('treasure')` && !hero.state.found)
     hero.catchTreasure()
   else
-    hero.forward()
+    hero.goRight()
 }
 
 const clearCanvas = () => {
