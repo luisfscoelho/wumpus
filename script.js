@@ -9,8 +9,8 @@ const monster = {
 const hero = {
   up:    `<img src="image/kngup.png" style="height:80%; width:80%" id="hero">`,
   down:  `<img src="image/kngdown.png" style="height:80%; width:80%" id="hero">`,
-  right: `<img src="image/kngright.png" style="height:80%; width:80%" id="hero">`,
   left:  `<img src="image/kngleft.png" style="height:80%; width:80%" id="hero">`,
+  right: `<img src="image/kngright.png" style="height:80%; width:80%" id="hero">`,
   locale: undefined,
   direction: undefined,
   state: {
@@ -23,19 +23,19 @@ const hero = {
     const theHero = document.getElementById('hero')
     grid[hero.locale].removeChild(theHero)
     if (hero.direction == 'right'){
-      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.up
+      grid[hero.locale].innerHTML = hero.up
       hero.direction = 'up'
     }
     if (hero.direction == 'up'){
-      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.left
+      grid[hero.locale].innerHTML = hero.left
       hero.direction = 'left'
     }
     if (hero.direction == 'down'){
-      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.right
+      grid[hero.locale].innerHTML = hero.right
       hero.direction = 'right'
     }
     if (hero.direction == 'left'){
-      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.down
+      grid[hero.locale].innerHTML = hero.down
       hero.direction = 'down'
     }
   },
@@ -43,19 +43,19 @@ const hero = {
     const theHero = document.getElementById('hero')
     grid[hero.locale].removeChild(theHero)
     if (hero.direction == 'right'){
-      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.down
+      grid[hero.locale].innerHTML = hero.down
       hero.direction = 'down'
     }
     if (hero.direction == 'up'){
-      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.right
+      grid[hero.locale].innerHTML = hero.right
       hero.direction = 'right'
     }
     if (hero.direction == 'down'){
-      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.left
+      grid[hero.locale].innerHTML = hero.left
       hero.direction = 'left'
     }
     if (hero.direction == 'left'){
-      grid[hero.locale].innerHTML = grid[hero.locale].innerHTML + hero.up
+      grid[hero.locale].innerHTML = hero.up
       hero.direction = 'up'
     }
   },
@@ -105,7 +105,7 @@ const gameLoop = () => setInterval(
 const action = () => {
   console.log('asd')
 
-  if(`hero.state[hero.locale].contains('treasure')` && !hero.state.found)
+  if(hero.state[hero.locale].contains('treasure') && !hero.state.found)
     hero.catchTreasure()
   else
     hero.goRight()
@@ -181,6 +181,7 @@ const removeMonster = n => {
 const setHero = n => {
   grid[n].innerHTML = grid[n].innerHTML + hero.down
   hero.locale = n
+  hero.direction = 'down'
   setTreasure()
 }
 
