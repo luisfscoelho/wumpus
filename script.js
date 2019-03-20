@@ -105,7 +105,7 @@ const gameLoop = () => setInterval(
 const action = () => {
   console.log('asd')
 
-  if(hero.state[hero.locale].contains('treasure') && !hero.state.found)
+  if(hero.state.canvas[hero.locale].includes('treasure') && !hero.state.found)
     hero.catchTreasure()
   else
     hero.goRight()
