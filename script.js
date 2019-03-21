@@ -26,15 +26,15 @@ const hero = {
       grid[hero.locale].innerHTML = hero.up
       hero.direction = 'up'
     }
-    if (hero.direction == 'up'){
+    else if (hero.direction == 'up'){
       grid[hero.locale].innerHTML = hero.left
       hero.direction = 'left'
     }
-    if (hero.direction == 'down'){
+    else if (hero.direction == 'down'){
       grid[hero.locale].innerHTML = hero.right
       hero.direction = 'right'
     }
-    if (hero.direction == 'left'){
+    else if (hero.direction == 'left'){
       grid[hero.locale].innerHTML = hero.down
       hero.direction = 'down'
     }
@@ -46,21 +46,39 @@ const hero = {
       grid[hero.locale].innerHTML = hero.down
       hero.direction = 'down'
     }
-    if (hero.direction == 'up'){
+    else if (hero.direction == 'up'){
       grid[hero.locale].innerHTML = hero.right
       hero.direction = 'right'
     }
-    if (hero.direction == 'down'){
+    else if (hero.direction == 'down'){
       grid[hero.locale].innerHTML = hero.left
       hero.direction = 'left'
     }
-    if (hero.direction == 'left'){
+    else if (hero.direction == 'left'){
       grid[hero.locale].innerHTML = hero.up
       hero.direction = 'up'
     }
   },
   forward: () => {
-
+    const locale = hero.locale
+    const theHero = document.getElementById('hero')
+    grid[hero.locale].removeChild(theHero)
+    if(hero.direction == 'right' && ![3,7,11,15].includes(locale)){
+      hero.locale = locale + 1
+      grid[hero.locale].innerHTML = hero.right
+    }
+    if(hero.direction == 'up' && ![0,1,2,3].includes(locale)){
+      hero.locale = locale - 4
+      grid[hero.locale].innerHTML = hero.up
+    }
+    if(hero.direction == 'down' && ![12,13,14,15].includes(locale)){
+      hero.locale = locale + 4
+      grid[hero.locale].innerHTML = hero.down
+    }
+    if(hero.direction == 'left' && ![0,4,8,12].includes(locale)){
+      hero.locale = locale - 1
+      grid[hero.locale].innerHTML = hero.left
+    }
   },
   catchTreasure: () => {
     hero.state.found = true
@@ -88,7 +106,7 @@ setInitialCanvas = () => {
   setHole()
   setHole()
   setmonster()
-  gameLoop()
+  //gameLoop()
 }
 
 const gameLoop = () => setInterval(
@@ -214,6 +232,18 @@ const setBreeze = n => {
   // if ( ![12, 13, 14, 15].includes('hole') )
   //   grid[n+4].innerHTML = grid[n+4].innerHTML + breeze
 }
+
+const move = e => {
+  if (e.key === ' ' || e.key === 'Spacebar')
+    hero.forward()
+  else if (e.keyCode == '37')
+    hero.goLeft()
+  else if (e.keyCode == '39')
+    hero.goRight()
+  console.log(hero.direction)
+}
+
+document.addEventListener("keydown", move)
 
 // Buttons
 const btnGo = document.getElementById(`btnGo`)
