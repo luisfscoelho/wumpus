@@ -244,11 +244,15 @@ const move = e => {
   else if (e.keyCode == '39')
     hero.goRight()
 
-  if(grid[hero.locale].classList.contains('treasure'))
-    alert('You Win')
+  if(grid[hero.locale].classList.contains('treasure')){
+      alert('You Win'); 
+      clearCanvas();
+      setInitialCanvas()
+  }
+    
   else if(grid[hero.locale].classList.contains('hole'))
     alert('You lose')
-  else if(grid[hero.locale].outerHTML.includes('monster.png'))
+  else if(grid[hero.locale].outerHTML.includes(monster.monster))
     alert('You lose')
 }
 
