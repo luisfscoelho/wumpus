@@ -243,6 +243,11 @@ const move = e => {
     hero.goLeft()
   else if (e.keyCode == '39')
     hero.goRight()
+
+  if(grid[hero.locale].classList.contains('treasure'))
+    alert('You Win')
+  else if(grid[hero.locale].classList.contains('hole'))
+    alert('You lose')
 }
 
 document.addEventListener("keydown", move)
