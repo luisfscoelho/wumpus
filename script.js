@@ -248,6 +248,8 @@ const move = e => {
     alert('You Win')
   else if(grid[hero.locale].classList.contains('hole'))
     alert('You lose')
+  else if(grid[hero.locale].outerHTML.includes('monster.png'))
+    alert('You lose')
 }
 
 document.addEventListener("keydown", move)
