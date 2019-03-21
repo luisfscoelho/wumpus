@@ -62,20 +62,23 @@ const hero = {
   forward: () => {
     const locale = hero.locale
     const theHero = document.getElementById('hero')
-    grid[hero.locale].removeChild(theHero)
     if(hero.direction == 'right' && ![3,7,11,15].includes(locale)){
+      grid[hero.locale].removeChild(theHero)
       hero.locale = locale + 1
       grid[hero.locale].innerHTML = hero.right
     }
     if(hero.direction == 'up' && ![0,1,2,3].includes(locale)){
+      grid[hero.locale].removeChild(theHero)
       hero.locale = locale - 4
       grid[hero.locale].innerHTML = hero.up
     }
     if(hero.direction == 'down' && ![12,13,14,15].includes(locale)){
+      grid[hero.locale].removeChild(theHero)
       hero.locale = locale + 4
       grid[hero.locale].innerHTML = hero.down
     }
     if(hero.direction == 'left' && ![0,4,8,12].includes(locale)){
+      grid[hero.locale].removeChild(theHero)
       hero.locale = locale - 1
       grid[hero.locale].innerHTML = hero.left
     }
@@ -240,7 +243,6 @@ const move = e => {
     hero.goLeft()
   else if (e.keyCode == '39')
     hero.goRight()
-  console.log(hero.direction)
 }
 
 document.addEventListener("keydown", move)
