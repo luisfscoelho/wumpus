@@ -134,7 +134,7 @@ const action = () => {
 
 const clearCanvas = () => {
   Array.prototype.map.call(grid, item => item.innerHTML = ``)
-  Array.prototype.map.call(grid, item => item.classList.remove('hole', 'door', 'treasure'))
+  Array.prototype.map.call(grid, item => item.classList.remove('hole', 'door', 'treasure','monster'))
 }
 
 const monsterTo = n => {
@@ -187,7 +187,7 @@ const setmonster = () => {
   if (grid[n].classList.contains('door'))
     setmonster()
   else {
-    grid[n].innerHTML = grid[n].innerHTML + monster.monster
+    grid[n].classList.add('monster')
     monster.locale = n
     setStink(n)
   }
@@ -249,10 +249,9 @@ const move = e => {
       clearCanvas();
       setInitialCanvas()
   }
-    
   else if(grid[hero.locale].classList.contains('hole'))
     alert('You lose')
-  else if(grid[hero.locale].outerHTML.includes(monster.monster))
+  else if(grid[hero.locale].classList.contains('monster'))
     alert('You lose')
 }
 
@@ -260,7 +259,11 @@ document.addEventListener("keydown", move)
 
 // Buttons
 const btnGo = document.getElementById(`btnGo`)
-btnGo.addEventListener(`click`, () => {clearCanvas(); setInitialCanvas()})
+btnGo.addEventListener(`click`, () => {
+    clearCanvas();
+    setInitialCanvas()
+})
 
 const btnRestart = document.getElementById(`btnRestart`)
 btnRestart.addEventListener(`click`, () => clearCanvas())
+
